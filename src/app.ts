@@ -1,6 +1,6 @@
 const CowinService = require('./CowinService');
 const CowinResponse = require('./CowinResponse');
-const _ =require('lodash');
+const _ = require('lodash');
 
 
 
@@ -9,29 +9,38 @@ let request: {
     date: string
 }[] = [
         {
-            pin: "400080",
-            date: "13-06-2021"
-        },
-        {
-            pin: "400081",
-            date: "13-06-2021"
+            pin: "400064",
+            date: "14-06-2021"
         }
+        // ,
+        // {
+        //     pin: "400081",
+        //     date: "13-06-2021"
+        // }
     ];
 
 
-async function getAllResults(){
-    let requests:Array<Promise<CowinResponse>>=[];
-    request.forEach(async function (val, key) {
-        //console.log(`Fetching data for ${val.pin} - ${val.date}`);
-        requests.push(new CowinService(val.pin, val.date).getResult());
+function getAllResults() {
+    let requests: Array<Promise<CowinResponse>> = [];
+    request.forEach(async (val, key) =>
+        //requests.push(new CowinService(val.pin, val.date).getResultByPincode())
+        requests.push(new CowinService().getResultByDistrict(395, val.date))
+    );
+
+    Promise.all(requests).then(res => {
+        let result: CowinResponse[] = _.flatten(res);
+        processData(result);
        
-    });
-    Promise.all(requests).then(res=>{
-       let result:CowinResponse[] = _.flatten(res);
-       result.forEach(function(data){
-        console.log(data.center_id);
-       });
     })
+}
+
+function processData(data:CowinResponse[]){
+    data.forEach((center)=>{
+        center.sessions
+        .filter(s=>s.available_capacity > 1)
+        .forEach(slot=>console.log(`Age ${slot.min_age_limit} - Dose-1 : ${slot.available_capacity_dose1} & Dose-2 : ${slot.available_capacity_dose2} @ ${center.name}`));
+    });
+    
 }
 
 getAllResults();

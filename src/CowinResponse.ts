@@ -21,7 +21,7 @@ interface sessions {
     min_age_limit: number
     vaccine: string
     slots: Array<string>
-    available_capacity_dose1: string
-    available_capacity_dose2: string
+    available_capacity_dose1: number
+    available_capacity_dose2: number
 
 }

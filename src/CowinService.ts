@@ -1,27 +1,20 @@
-const rest=require('node-fetch');
+const RestService = require('./RestService')
+module.exports = class CowinService {
 
-module.exports=class CowinService {
+
+    readonly pincodeUrl: String = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${pin}&date=${date}';
+    readonly districtUrl: string = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=${district_id}&date=${date}';
+
+
+    getResultByPincode(pin: string, date: string): Promise<CowinResponse[]> {
+        console.log(`Fetching data for ${pin} - ${date}`);
+        return RestService.doGet((this.pincodeUrl.replace("${pin}", pin).replace("${date}", date).toString()));
+    }
     
-    
-url: String = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${pin}&date=${date}';
-datex:string;
-pin:string;
-
-
-constructor(pin:string,datex:string){
-    this.datex=datex;
-    this.pin=pin;
-    this.url=this.url.replace("${pin}",this.pin).replace("${date}",this.datex);
-}
-
-getResult(): Promise<CowinResponse[]> {
-    console.log(`Fetching data for ${this.pin} - ${this.datex}`);
-    return rest(this.url.toString())
-                .then(res => res.json())
-                .then(res => {
-                        return res['centers'] as CowinResponse[];
-                });
-}
+    getResultByDistrict(district_id: string, date: string): Promise<CowinResponse[]> {
+        console.log(`Fetching data for ${district_id} - ${date}`);
+        return RestService.doGet(this.districtUrl.replace("${district_id}", district_id).replace("${date}", date).toString());
+    }
 
 }
 
