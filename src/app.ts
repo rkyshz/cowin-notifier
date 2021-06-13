@@ -1,4 +1,4 @@
-const Cowin = require('./Cowin');
+const CowinService = require('./CowinService');
 const CowinResponse = require('./CowinResponse');
 const _ =require('lodash');
 
@@ -22,8 +22,8 @@ let request: {
 async function getAllResults(){
     let requests:Array<Promise<CowinResponse>>=[];
     request.forEach(async function (val, key) {
-        console.log(`Fetching data for ${val.pin} - ${val.date}`);
-        requests.push(new Cowin(val.pin, val.date).getResult());
+        //console.log(`Fetching data for ${val.pin} - ${val.date}`);
+        requests.push(new CowinService(val.pin, val.date).getResult());
        
     });
     Promise.all(requests).then(res=>{
@@ -31,8 +31,6 @@ async function getAllResults(){
        result.forEach(function(data){
         console.log(data.center_id);
        });
-        
-        
     })
 }
 

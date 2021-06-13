@@ -1,6 +1,6 @@
 const rest=require('node-fetch');
 
-module.exports=class Cowin {
+module.exports=class CowinService {
     
     
 url: String = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${pin}&date=${date}';
