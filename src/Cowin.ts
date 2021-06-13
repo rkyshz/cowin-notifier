@@ -15,13 +15,12 @@ constructor(pin:string,datex:string){
 }
 
 getResult(): Promise<CowinResponse> {
-    console.log(`${this.pin} - ${this.datex}`);
-    console.log(this.url);
+    console.log(`Fetching data for ${this.pin} - ${this.datex}`);
     return rest(this.url.toString())
                 .then(res => res.json())
                 .then(res => {
                         return res as CowinResponse;
-                })
+                });
 }
 
 }
