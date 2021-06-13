@@ -1,5 +1,6 @@
 const Cowin = require('./Cowin');
 const CowinResponse = require('./CowinResponse');
+const _ =require('lodash');
 
 
 
@@ -26,7 +27,12 @@ async function getAllResults(){
        
     });
     Promise.all(requests).then(res=>{
-        console.log(res);
+       let result:CowinResponse[] = _.flatten(res);
+       result.forEach(function(data){
+        console.log(data.center_id);
+       });
+        
+        
     })
 }
 

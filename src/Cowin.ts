@@ -14,12 +14,12 @@ constructor(pin:string,datex:string){
     this.url=this.url.replace("${pin}",this.pin).replace("${date}",this.datex);
 }
 
-getResult(): Promise<CowinResponse> {
+getResult(): Promise<CowinResponse[]> {
     console.log(`Fetching data for ${this.pin} - ${this.datex}`);
     return rest(this.url.toString())
                 .then(res => res.json())
                 .then(res => {
-                        return res as CowinResponse;
+                        return res['centers'] as CowinResponse[];
                 });
 }
 
