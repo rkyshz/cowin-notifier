@@ -29,6 +29,7 @@ function getAllResults() {
 
     Promise.all(requests).then(res => {
         let result: CowinResponse[] = _.flatten(res);
+        //new CowinService().
         processData(result);
        
     })
