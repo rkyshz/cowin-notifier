@@ -28,6 +28,6 @@
 ![step7](/docs/step7.png)
 
 12) Click **Create** or **Update**
-13) 
+
 ![step8](/docs/step8.png)
    
