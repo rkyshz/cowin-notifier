@@ -1,13 +1,15 @@
 # cowin-notifier (with IFTTT & Telegram integration)
 
-Basic NodeJS app to monitor vaccine slots using [Cowin API](https://apisetu.gov.in/public/marketplace/api/cowin "Cowin API").
+Basic NodeJS app to monitor vaccine slots using [Cowin API](https://apisetu.gov.in/public/marketplace/api/cowin "Cowin API") and notify via IFTTT to Telegram.
 1) Get notified based on pincode
 2) Get notified based on district
 
-**Run on Gitpod**
+<img src="https://github.com/rkyshz/cowin-notifier/blob/master/docs/telegram.jpeg" width="250" height="426" />
+
+**Run on Gitpod**</br>
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/rkyshz/cowin-notifier)&nbsp;
 
-Steps to compile & run
+**Steps to compile & run**
 1) `git clone https://github.com/rkyshz/cowin-notifier.git`
 2) `npm run build` (`npm run watch` for watch mode)
 3) `npm start -- -t 10` (`-t`to poll every 10 minutes. Defaults to 5 if no args passed)
