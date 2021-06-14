@@ -1,6 +1,6 @@
 # cowin-notifier
 
-NodeJS app to monitor vaccine slots using Cowin API.
+Basic NodeJS app to monitor vaccine slots using Cowin API.
 1) Get notified based on pincode
 2) Get notified based on district
 
