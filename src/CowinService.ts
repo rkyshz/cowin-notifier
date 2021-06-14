@@ -9,12 +9,12 @@ export class CowinService {
 
 
     getResultByPincode(pin: string, date: string): Promise<CowinResponse[]> {
-        console.log(`Fetching data for ${pin} - ${date}`);
+        console.log(`[${new Date().toISOString()}] Fetching data for ${pin} - ${date}`);
         return RestService.doGet((this.pincodeUrl.replace("${pin}", pin).replace("${date}", date).toString()));
     }
     
     getResultByDistrict(district_id: string, date: string): Promise<CowinResponse[]> {
-        console.log(`Fetching data for ${district_id} - ${date}`);
+        console.log(`[${new Date().toISOString()}] Fetching data for ${district_id} - ${date}`);
         return RestService.doGet(this.districtUrl.replace("${district_id}", district_id).replace("${date}", date).toString());
     }
 
