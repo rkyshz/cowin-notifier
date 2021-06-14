@@ -3,7 +3,7 @@ import { CowinResponse } from './CowinResponse';
 import _ from 'lodash';
 //import * as config from '../cowin-config.json';
 import audic from 'audic';
-import {Notifier} from './Notifier';
+import { Notifier } from './Notifier';
 
 
 
@@ -48,14 +48,14 @@ function processData(data: CowinResponse[]) {
         new Notifier().sendToTelegram(finalResults);
     }
 
-   
+
 }
 
 let argv = require('minimist')(process.argv.slice(2));
-let interval=argv.t || 5;
+let interval = argv.t || 5;
 console.log(`Polling every ${interval} minutes`);
 getAllResults();
-setInterval(() => getAllResults(), interval*60000);
+setInterval(() => getAllResults(), interval * 60000);
 
 
 
