@@ -2,21 +2,20 @@ import { CowinService } from './CowinService';
 import { CowinResponse } from './CowinResponse';
 import _ from 'lodash';
 //import * as config from '../cowin-config.json';
-import fs from 'fs';
+
 
 
 let request: {
-    pin: string,
-    date: string
+    param: string,
+    date: string,
+    type: string
 }[]=JSON.parse(require('fs').readFileSync('cowin-config.json', 'utf8'));
 
 
 function getAllResults() {
     let requests: Array<Promise<CowinResponse[]>> = [];
     request.forEach(async (val, key) =>
-        requests.push(new CowinService().getResultByPincode(val.pin, val.date))
-        //requests.push(new CowinService().getResultByDistrict("395".toString(), val.date))
-        
+        val.type==='P' ? requests.push(new CowinService().getResultByPincode(val.param, val.date)) : requests.push(new CowinService().getResultByDistrict(val.param, val.date))
     );
 
     Promise.all(requests).then(res => {
@@ -35,4 +34,6 @@ function processData(data:CowinResponse[]){
 }
 
 getAllResults();
+//setInterval(()=>getAllResults(),2000);
+
 
