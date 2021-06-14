@@ -39,13 +39,13 @@ function processData(data: CowinResponse[]) {
     data.forEach((center) => {
         center.sessions
             .filter(s => s.available_capacity > 1)
-            .forEach(slot => finalResults.push(`<br/> Date: ${slot.date} <br/> Age: ${slot.min_age_limit} <br/> D1 : ${slot.available_capacity_dose1}  D2 : ${slot.available_capacity_dose2} <br/> Center: ${center.name} <br/> Pin: (${center.pincode})`));
+            .forEach(slot => finalResults.push(`<br/> Date: ${slot.date} <br/> Age: ${slot.min_age_limit} <br/> Vaccine: ${slot.vaccine} <br/> D1 : ${slot.available_capacity_dose1}  D2 : ${slot.available_capacity_dose2} <br/> Center: ${center.name} <br/> Pin: ${center.pincode}`));
     });
 
     if (finalResults.length > 1) {
-        finalResults.forEach(res => console.log(`[${new Date().toISOString()}] ${res}`));
+        _.uniq(finalResults).forEach(res => console.log(`[${new Date().toISOString()}] ${res}`));
         new audic("notify.mp3").play().catch(ex=>console.error("No VLC binary"));
-        new Notifier().sendToTelegram(finalResults);
+        new Notifier().sendToTelegram(_.uniq(finalResults));
     }
 
 
