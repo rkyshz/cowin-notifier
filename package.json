@@ -8,6 +8,7 @@
     "start": "node target/app.js"
   },
   "dependencies": {
+    "audic": "^2.0.0",
     "http-server": "^0.12.3",
     "lodash": "^4.17.21",
     "node-fetch": "^2.6.1",
