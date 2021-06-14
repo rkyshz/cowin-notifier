@@ -18,7 +18,7 @@ let request: {
 function getAllResults() {
     let requests: Array<Promise<CowinResponse[]>> = [];
     request.forEach(async (val, key) =>{
-        for (let d = new Date("2021-06-14"); d <= new Date("2021-06-17"); d.setDate(d.getDate() + 1)) {
+        for (let d = new Date(val.dateFrom); d <= new Date(val.dateTo); d.setDate(d.getDate() + 1)) {
             val.type==='P' ? requests.push(new CowinService().getResultByPincode(val.param, toDDMMYYYY(d))) : requests.push(new CowinService().getResultByDistrict(val.param, toDDMMYYYY(d)))
         }
 
