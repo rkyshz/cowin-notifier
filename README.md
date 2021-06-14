@@ -1,4 +1,4 @@
-# cowin-notifier
+# cowin-notifier (with IFTTT & Telegram integration)
 
 Basic NodeJS app to monitor vaccine slots using [Cowin API](https://apisetu.gov.in/public/marketplace/api/cowin "Cowin API").
 1) Get notified based on pincode
@@ -6,7 +6,7 @@ Basic NodeJS app to monitor vaccine slots using [Cowin API](https://apisetu.gov.
 
 Steps to compile & run
 1) `git clone https://github.com/rkyshz/cowin-notifier.git`
-2) `npm run build` (-w for watch mode)
+2) `npm run build` (`npm run watch` for watch mode)
 3) `npm start`
 
 Configurations
