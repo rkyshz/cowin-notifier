@@ -3,7 +3,8 @@ import { CowinResponse } from './CowinResponse';
 import _ from 'lodash';
 //import * as config from '../cowin-config.json';
 import audic from 'audic';
-
+import {Notifier} from './Notifier';
+import { Session } from 'inspector';
 
 
 
@@ -38,19 +39,23 @@ function processData(data: CowinResponse[]) {
     data.forEach((center) => {
         center.sessions
             .filter(s => s.available_capacity > 1)
-            .forEach(slot => finalResults.push(`Age ${slot.min_age_limit} - Dose-1 : ${slot.available_capacity_dose1} & Dose-2 : ${slot.available_capacity_dose2} @ ${center.name} (${center.pincode})`));
+            .forEach(slot => finalResults.push(`Age ${slot.min_age_limit} - D1 : ${slot.available_capacity_dose1} & D2 : ${slot.available_capacity_dose2} @ ${center.name} (${center.pincode}) for ${slot.date}`));
     });
 
     if (finalResults.length > 1) {
         finalResults.forEach(res => console.log(`[${new Date().toISOString()}] ${res}`));
         new audic("notify.mp3").play();
+        new Notifier().sendToTelegram(finalResults);
     }
+
+   
 }
 
 let argv = require('minimist')(process.argv.slice(2));
 let interval=argv.t || 5;
 console.log(`Polling every ${interval} minutes`);
-//getAllResults();
-setInterval(() => getAllResults(), interval*60000);
+getAllResults();
+//setInterval(() => getAllResults(), interval*60000);
+
 
 
