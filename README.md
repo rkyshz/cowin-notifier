@@ -10,7 +10,8 @@ Steps to compile & run
 3) `npm start`
 
 Configurations
-```[
+```
+[
     {
         "param": "400081",
         "dateFrom": "16-06-2021",
