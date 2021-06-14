@@ -39,7 +39,7 @@ function processData(data: CowinResponse[]) {
     data.forEach((center) => {
         center.sessions
             .filter(s => s.available_capacity > 1)
-            .forEach(slot => finalResults.push(`Age ${slot.min_age_limit} - D1 : ${slot.available_capacity_dose1} & D2 : ${slot.available_capacity_dose2} @ ${center.name} (${center.pincode}) for ${slot.date}`));
+            .forEach(slot => finalResults.push(`<br/> Date: ${slot.date} <br/> Age: ${slot.min_age_limit} <br/> D1 : ${slot.available_capacity_dose1}  D2 : ${slot.available_capacity_dose2} <br/> Center: ${center.name} <br/> Pin: (${center.pincode})`));
     });
 
     if (finalResults.length > 1) {
