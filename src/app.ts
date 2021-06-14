@@ -1,6 +1,6 @@
-const CowinService = require('./CowinService');
-const CowinResponse = require('./CowinResponse');
-const _ = require('lodash');
+import { CowinService } from './CowinService'; 
+import { CowinResponse } from './CowinResponse';
+import * as _ from 'lodash';
 
 
 
@@ -21,17 +21,16 @@ let request: {
 
 
 function getAllResults() {
-    let requests: Array<Promise<CowinResponse>> = [];
+    let requests: Array<Promise<CowinResponse[]>> = [];
     request.forEach(async (val, key) =>
         //requests.push(new CowinService(val.pin, val.date).getResultByPincode())
-        requests.push(new CowinService().getResultByDistrict(395, val.date))
+        requests.push(new CowinService().getResultByDistrict("395", val.date))
+        
     );
 
     Promise.all(requests).then(res => {
         let result: CowinResponse[] = _.flatten(res);
-        //new CowinService().
         processData(result);
-       
     })
 }
 

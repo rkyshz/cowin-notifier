@@ -1,5 +1,7 @@
-const RestService = require('./RestService')
-module.exports = class CowinService {
+//const RestService = require('./RestService')
+import { RestService } from "./RestService";
+import { CowinResponse } from "./CowinResponse";
+export class CowinService {
 
 
     readonly pincodeUrl: String = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${pin}&date=${date}';

@@ -1,5 +1,7 @@
-const rest=require('node-fetch');
-module.exports = class RestService {
+import * as rest from 'node-fetch';
+import { CowinResponse } from './CowinResponse';
+
+export class RestService {
 
     static doGet(url:string) : Promise<CowinResponse[]> {
         return rest(url)

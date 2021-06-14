@@ -1,4 +1,4 @@
-interface CowinResponse {
+export interface CowinResponse {
     center_id: string
     name: string
     address: string
@@ -14,7 +14,7 @@ interface CowinResponse {
     sessions: Array<sessions>
 }
 
-interface sessions {
+export interface sessions {
     session_id: string
     date: string
     available_capacity: number
