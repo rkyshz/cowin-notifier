@@ -13,12 +13,14 @@ Configurations
 ```[
     {
         "param": "400081",
-        "date": "16-06-2021",
+        "dateFrom": "16-06-2021",
+        "dateTo": "18-06-2021",
         "type": "P"
     },
     {
         "param": "395",
-        "date": "15-06-2021",
+        "dateFrom": "16-06-2021",
+        "dateTo": "18-06-2021",
         "type": "D"
     }
 ]
