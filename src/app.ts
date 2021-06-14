@@ -44,7 +44,7 @@ function processData(data: CowinResponse[]) {
 
     if (finalResults.length > 1) {
         finalResults.forEach(res => console.log(`[${new Date().toISOString()}] ${res}`));
-        new audic("notify.mp3").play();
+        new audic("notify.mp3").play().catch(ex=>console.error("No VLC binary"));
         new Notifier().sendToTelegram(finalResults);
     }
 
