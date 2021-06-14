@@ -4,10 +4,13 @@ Basic NodeJS app to monitor vaccine slots using [Cowin API](https://apisetu.gov.
 1) Get notified based on pincode
 2) Get notified based on district
 
+<b>Run on Gitpod</b><br/>
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/TheAlgorithms/Javascript)&nbsp;
+
 Steps to compile & run
 1) `git clone https://github.com/rkyshz/cowin-notifier.git`
 2) `npm run build` (`npm run watch` for watch mode)
-3) `npm start`
+3) `npm start -- -t 10` (`-t`to poll every 10 minutes. Defaults to 5 if no args passed)
 
 Configurations
 ```
