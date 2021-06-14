@@ -18,7 +18,7 @@ export class RestService {
             headers: { 'Content-Type': 'application/json' },
         })
             .then(res => res);
-            .//then(json => console.log(json));
+            //.then(json => console.log(json));
     }
 
 }
