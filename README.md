@@ -4,8 +4,8 @@ Basic NodeJS app to monitor vaccine slots using [Cowin API](https://apisetu.gov.
 1) Get notified based on pincode
 2) Get notified based on district
 
-<b>Run on Gitpod</b><br/>
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/TheAlgorithms/Javascript)&nbsp;
+**Run on Gitpod**
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/rkyshz/cowin-notifier)&nbsp;
 
 Steps to compile & run
 1) `git clone https://github.com/rkyshz/cowin-notifier.git`
@@ -34,3 +34,7 @@ Configurations
 >type D - Get by District
 
 >param - Either Pincode or District based on type (P/D)
+
+<h4>IFTTT webhook integration</h4>
+
+**Refer** [IFTTT & Telegram integration](https://github.com/rkyshz/cowin-notifier/blob/master/IFTTT.md)
