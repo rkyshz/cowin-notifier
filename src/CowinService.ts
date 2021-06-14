@@ -1,4 +1,4 @@
-//const RestService = require('./RestService')
+
 import { RestService } from "./RestService";
 import { CowinResponse } from "./CowinResponse";
 export class CowinService {

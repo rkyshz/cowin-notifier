@@ -1,5 +1,7 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.tabCompletion": "on",
+  "emmet.triggerExpansionOnTab": true
   // "editor.theme": "vs-dark",
   /**
    * Render vertical lines at the specified columns.

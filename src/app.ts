@@ -1,6 +1,7 @@
 import { CowinService } from './CowinService'; 
 import { CowinResponse } from './CowinResponse';
-import * as _ from 'lodash';
+import _ from 'lodash';
+import { Console } from 'console';
 
 
 
@@ -24,7 +25,7 @@ function getAllResults() {
     let requests: Array<Promise<CowinResponse[]>> = [];
     request.forEach(async (val, key) =>
         //requests.push(new CowinService(val.pin, val.date).getResultByPincode())
-        requests.push(new CowinService().getResultByDistrict("395", val.date))
+        requests.push(new CowinService().getResultByDistrict("395".toString(), val.date))
         
     );
 
