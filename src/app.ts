@@ -4,7 +4,7 @@ import _ from 'lodash';
 //import * as config from '../cowin-config.json';
 import audic from 'audic';
 import {Notifier} from './Notifier';
-import { Session } from 'inspector';
+
 
 
 
@@ -55,7 +55,7 @@ let argv = require('minimist')(process.argv.slice(2));
 let interval=argv.t || 5;
 console.log(`Polling every ${interval} minutes`);
 getAllResults();
-//setInterval(() => getAllResults(), interval*60000);
+setInterval(() => getAllResults(), interval*60000);
 
 
 
