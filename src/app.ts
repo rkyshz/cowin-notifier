@@ -9,15 +9,20 @@ import audic from 'audic';
 
 let request: {
     param: string,
-    date: string,
+    dateFrom: string,
+    dateTo: string,
     type: string
 }[]=JSON.parse(require('fs').readFileSync('cowin-config.json', 'utf8'));
 
 
 function getAllResults() {
     let requests: Array<Promise<CowinResponse[]>> = [];
-    request.forEach(async (val, key) =>
-        val.type==='P' ? requests.push(new CowinService().getResultByPincode(val.param, val.date)) : requests.push(new CowinService().getResultByDistrict(val.param, val.date))
+    request.forEach(async (val, key) =>{
+        for (let d = new Date("2021-06-14"); d <= new Date("2021-06-17"); d.setDate(d.getDate() + 1)) {
+            val.type==='P' ? requests.push(new CowinService().getResultByPincode(val.param, toDDMMYYYY(d))) : requests.push(new CowinService().getResultByDistrict(val.param, toDDMMYYYY(d)))
+        }
+
+    }
     );
 
     Promise.all(requests).then(res => {
@@ -25,7 +30,9 @@ function getAllResults() {
         processData(result);
     })
 }
-
+function toDDMMYYYY(date:Date):string{
+    return `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
+}
 function processData(data:CowinResponse[]){
     let finalResults:Array<string>=[];
     data.forEach((center)=>{
@@ -41,6 +48,6 @@ function processData(data:CowinResponse[]){
 }
 
 //getAllResults();
-setInterval(()=>getAllResults(),10000);
+setInterval(()=>getAllResults(),60000);
 
 
