@@ -27,8 +27,8 @@ function getAllResults() {
 function processData(data:CowinResponse[]){
     data.forEach((center)=>{
         center.sessions
-        .filter(s=>s.available_capacity > -1)
-        .forEach(slot=>console.log(`Age ${slot.min_age_limit} - Dose-1 : ${slot.available_capacity_dose1} & Dose-2 : ${slot.available_capacity_dose2} @ ${center.name}`));
+        .filter(s=>s.available_capacity > 1)
+        .forEach(slot=>console.log(`Age ${slot.min_age_limit} - Dose-1 : ${slot.available_capacity_dose1} & Dose-2 : ${slot.available_capacity_dose2} @ ${center.name} (${center.pincode})`));
     });
     
 }
