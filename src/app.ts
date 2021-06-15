@@ -32,8 +32,8 @@ function toDDMMYYYY(date: Date): string {
 }
 function processData(data: CowinResponse[]) {
     let finalResults: Array<string> = [];
+    console.log(data);
     data.forEach((center) => {
-        console.log(center);
         center.sessions
             .filter(s => s.available_capacity > 0)
             .forEach(session => {
