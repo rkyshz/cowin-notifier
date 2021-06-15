@@ -33,7 +33,7 @@ function toDDMMYYYY(date: Date): string {
 function processData(data: CowinResponse[]) {
     let finalResults: Array<string> = [];
     data.forEach((center) => {
-        center?.sessions
+        center.sessions
             .filter(s => s.available_capacity > 0)
             .forEach(session => {
                 if(!resultCache.includes(session.session_id)){
@@ -47,7 +47,7 @@ function processData(data: CowinResponse[]) {
         finalResults.forEach(res => console.log(`[${new Date().toISOString()}] ${res}`));
             new audic("notify.mp3").play().catch(ex => console.error("No VLC binary"));
             if (argv.k !== null) {
-               // new Notifier().sendToTelegram(finalResults, argv.k);
+               new Notifier().sendToTelegram(finalResults, argv.k);
             }
     }
         /*let delta: Array<string> = _.uniq(finalResults).filter(d => !resultCache.includes(d));  //Filter out already sent values
