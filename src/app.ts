@@ -37,7 +37,7 @@ function processData(data: CowinResponse[]) {
             .filter(s => s.available_capacity > 0)
             .forEach(session => {
                 if(!resultCache.includes(session.session_id)){
-                    finalResults.push(`<br/> Date: ${session.date} <br/> Age: ${session.min_age_limit} <br/> Vaccine: ${session.vaccine} <br/> D1 : ${session.available_capacity_dose1}  D2 : ${session.available_capacity_dose2} <br/> Center: ${center.name} <br/> Pin: ${center.pincode}`)
+                    finalResults.push(`<br/>ID: ${session.session_id.split("-")[0]} <br/> Date: ${session.date} <br/> Age: ${session.min_age_limit} <br/> Vaccine: ${session.vaccine} <br/> D1 : ${session.available_capacity_dose1}  D2 : ${session.available_capacity_dose2} <br/> Center: ${center.name} <br/> Pin: ${center.pincode}`)
                     resultCache.push(session.session_id);
                 }
             });
