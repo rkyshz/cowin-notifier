@@ -21,7 +21,7 @@
 ![step6](/docs/step6.png)
 
 11) On the `Send message` screen -
-   - **Target Chat** `=>` **Private chat with @IFTTT**
+   - **Target Chat** `=>` **Private chat with @IFTTT** (Use the @IFTTT bot on Telegram to post messages to Groups or Channels.)
    - **Message text** `=>` ``` <b>Vaccine Slot available - Updated at {{OccurredAt}}</b><br/>{{Value1}}```
    - **web page preview** `=>` **Disabled**
    

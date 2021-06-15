@@ -6,7 +6,7 @@ NodeJS app to monitor vaccine slots using [Cowin API](https://apisetu.gov.in/pub
 
 <img src="https://github.com/rkyshz/cowin-notifier/blob/master/docs/telegram.jpeg" width="250" height="426" />
 
->**Supports incremental updates `=>` Alerts once sent out for a particular slot won't be sent again unless server is restarted.**
+>**Supports incremental updates `=>` Alerts once sent out for an open slot (Identified by session ID) won't be sent again unless server is restarted.**
 
 **Run on Gitpod**</br>
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/rkyshz/cowin-notifier)&nbsp;
