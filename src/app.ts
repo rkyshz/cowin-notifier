@@ -14,7 +14,7 @@ let request: {
     dateTo: string,
     type: string
 }[] = JSON.parse(require('fs').readFileSync('cowin-config.json', 'utf8'));
-
+let resultCache:Array<string>=[];
 
 function getAllResults() {
     let requests: Array<Promise<CowinResponse[]>> = [];
@@ -45,10 +45,14 @@ function processData(data: CowinResponse[]) {
     });
 
     if (finalResults.length > 0) {
-        _.uniq(finalResults).forEach(res => console.log(`[${new Date().toISOString()}] ${res}`));
-        new audic("notify.mp3").play().catch(ex=>console.error("No VLC binary"));
-        if(argv.k!==null){
-            new Notifier().sendToTelegram(_.uniq(finalResults),argv.k);
+        let delta:Array<string> = _.uniq(finalResults).filter(d=>!resultCache.includes(d));  //Filter out already sent values
+        if(delta.length>0){
+            delta.forEach(res => console.log(`[${new Date().toISOString()}] ${res}`));
+            new audic("notify.mp3").play().catch(ex=>console.error("No VLC binary"));
+            if(argv.k!==null){
+                new Notifier().sendToTelegram(delta,argv.k);
+            }
+            resultCache=_.union(resultCache,finalResults); //Fill cache with new values. Duplicate new values are handled by _.union
         }
     }
 
