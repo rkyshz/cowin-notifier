@@ -30,4 +30,15 @@
 12) Click **Create** or **Update**
 
 ![step8](/docs/step8.png)
+
+13) Applet connected
+
+![step9](/docs/step9.png)
+
+14) To retrieve the `key` used to connect to IFTTT go to [Webhooks](https://ifttt.com/maker_webhooks) and click on `Documentation` on top right corner
+
+![step10](/docs/step10.png)
+
+15) The `key` is mentioned on the page. You can also try triggering a message to test the connectivity. Be sure to fill in the `{event}` as `slot_open` and `value` fields as desired
    
+![step11](/docs/step11.png)
