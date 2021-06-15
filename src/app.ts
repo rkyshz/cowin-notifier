@@ -33,11 +33,12 @@ function toDDMMYYYY(date: Date): string {
 function processData(data: CowinResponse[]) {
     let finalResults: Array<string> = [];
     data.forEach((center) => {
+        console.log(center);
         center.sessions
             .filter(s => s.available_capacity > 0)
             .forEach(session => {
                 if(!resultCache.includes(session.session_id)){
-                    finalResults.push(`<br/>ID: ${session.session_id.split("-")[0]} <br/> Date: ${session.date} <br/> Age: ${session.min_age_limit} <br/> Vaccine: ${session.vaccine} <br/> D1 : ${session.available_capacity_dose1}  D2 : ${session.available_capacity_dose2} <br/> Center: ${center.name} <br/> Pin: ${center.pincode}`)
+                    finalResults.push(`<br/>ID: ${session.session_id.split("-")[0]} <br/> Date: ${session.date} <br/> Age: ${session.min_age_limit} <br/> Vaccine: ${session.vaccine} <br/> D1 : ${session.available_capacity_dose1}  D2 : ${session.available_capacity_dose2} <br/> Center: ${center.name} <br/> Pin: ${center.pincode}`);
                     resultCache.push(session.session_id);
                 }
             });
@@ -47,7 +48,7 @@ function processData(data: CowinResponse[]) {
         finalResults.forEach(res => console.log(`[${new Date().toISOString()}] ${res}`));
             new audic("notify.mp3").play().catch(ex => console.error("No VLC binary"));
             if (argv.k !== null) {
-               new Notifier().sendToTelegram(finalResults, argv.k);
+               //new Notifier().sendToTelegram(finalResults, argv.k);
             }
     }
         /*let delta: Array<string> = _.uniq(finalResults).filter(d => !resultCache.includes(d));  //Filter out already sent values
