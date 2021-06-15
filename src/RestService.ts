@@ -3,8 +3,8 @@ import { CowinResponse } from './CowinResponse';
 
 export class RestService {
 
-    static async doGet(url: string): Promise<CowinResponse[]> {
-        return await fetch(url)
+    static doGet(url: string): Promise<CowinResponse[]> {
+        return fetch(url)
             .then(res => res.json())
             .then(res => {
                 return res['centers'] as CowinResponse[];

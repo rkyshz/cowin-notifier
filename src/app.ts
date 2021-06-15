@@ -15,7 +15,7 @@ let resultCache: Array<string> = [];
 
 function getAllResults() {
     let requests: Array<Promise<CowinResponse[]>> = [];
-    request.forEach(async val => {
+    request.forEach(val => {
         for (let d = new Date(val.dateFrom); d <= new Date(val.dateTo); d.setDate(d.getDate() + 1)) {
             val.type === 'P' ? requests.push(new CowinService().getResultByPincode(val.param, toDDMMYYYY(d))) : requests.push(new CowinService().getResultByDistrict(val.param, toDDMMYYYY(d)))
         }
@@ -32,7 +32,7 @@ function toDDMMYYYY(date: Date): string {
 }
 function processData(data: CowinResponse[]) {
     let finalResults: Array<string> = [];
-    console.log(data);
+    if(data){
     data.forEach((center) => {
         center.sessions
             .filter(s => s.available_capacity > 0)
@@ -51,6 +51,7 @@ function processData(data: CowinResponse[]) {
                //new Notifier().sendToTelegram(finalResults, argv.k);
             }
     }
+}
         /*let delta: Array<string> = _.uniq(finalResults).filter(d => !resultCache.includes(d));  //Filter out already sent values
         console.log(`Cache : ${resultCache}`)
         console.log(`Current : ${_.uniq(finalResults)}`)
