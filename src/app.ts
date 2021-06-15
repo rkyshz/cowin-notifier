@@ -38,14 +38,18 @@ function processData(data: CowinResponse[]) {
     let finalResults: Array<string> = [];
     data.forEach((center) => {
         center.sessions
-            .filter(s => s.available_capacity > 1)
-            .forEach(slot => finalResults.push(`<br/> Date: ${slot.date} <br/> Age: ${slot.min_age_limit} <br/> Vaccine: ${slot.vaccine} <br/> D1 : ${slot.available_capacity_dose1}  D2 : ${slot.available_capacity_dose2} <br/> Center: ${center.name} <br/> Pin: ${center.pincode}`));
+            .filter(s => s.available_capacity > 0)
+            .forEach(slot => {
+                finalResults.push(`<br/> Date: ${slot.date} <br/> Age: ${slot.min_age_limit} <br/> Vaccine: ${slot.vaccine} <br/> D1 : ${slot.available_capacity_dose1}  D2 : ${slot.available_capacity_dose2} <br/> Center: ${center.name} <br/> Pin: ${center.pincode}`)
+        });
     });
 
     if (finalResults.length > 0) {
         _.uniq(finalResults).forEach(res => console.log(`[${new Date().toISOString()}] ${res}`));
         new audic("notify.mp3").play().catch(ex=>console.error("No VLC binary"));
-        new Notifier().sendToTelegram(_.uniq(finalResults));
+        if(argv.k!==null){
+            new Notifier().sendToTelegram(_.uniq(finalResults),argv.k);
+        }
     }
 
 
