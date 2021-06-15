@@ -7,6 +7,7 @@ export class RestService {
         return fetch(url)
             .then(res => res.json())
             .then(res => {
+                console.log(res);
                 return res['centers'] as CowinResponse[];
             });
     }
