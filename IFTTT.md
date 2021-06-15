@@ -41,4 +41,4 @@
 
 15) The `key` is mentioned on the page. You can also try triggering a message to test the connectivity. Be sure to fill in the `{event}` as `slot_open` and `value` fields as desired
    
-![step11](/docs/step11.png)
+![step11](/docs/step-11.png)
