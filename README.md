@@ -10,11 +10,16 @@ Basic NodeJS app to monitor vaccine slots using [Cowin API](https://apisetu.gov.
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/rkyshz/cowin-notifier)&nbsp;
 
 **Steps to compile & run**
-1) `git clone https://github.com/rkyshz/cowin-notifier.git`
-2) `npm run build` (`npm run watch` for watch mode)
-3) `npm start -- -t 10` (`-t`to poll every 10 minutes. Defaults to 5 if no args passed)
+1) `git clone https://github.com/rkyshz/cowin-notifier.git` **(Skip this step if using Gitpod)**
+2) `npm install`
+3) `npm run build` (`npm run watch` for watch mode)
+4) `npm start -- -t 10 -k abcd1234` 
+    - `-t`to poll every 10 minutes. Defaults to 5 if no args passed
+    - `-k` IFTTT `Webhooks` api key from [IFTTT & Telegram integration](https://github.com/rkyshz/cowin-notifier/blob/master/IFTTT.md). If no key passed, Telegram alerts will be disabled.
 
-Configurations
+**Configurations**<br/>
+`cowin-config.json`
+
 ```
 [
     {
