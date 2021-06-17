@@ -51,6 +51,7 @@ function processData(data: CowinResponse[]) {
                new Notifier().sendToTelegram(finalResults, argv.k);
             }
     }
+    console.log(`Entries in cache ${resultCache.length}`)
         /*let delta: Array<string> = _.uniq(finalResults).filter(d => !resultCache.includes(d));  //Filter out already sent values
         console.log(`Cache : ${resultCache}`)
         console.log(`Current : ${_.uniq(finalResults)}`)
