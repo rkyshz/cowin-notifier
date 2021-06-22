@@ -12,21 +12,29 @@ let request: {
     type: string
 }[] = JSON.parse(require('fs').readFileSync('cowin-config.json', 'utf8'));
 let resultCache: Array<string> = [];
+let requests: Array<Promise<CowinResponse[]>> = [];
 
 function getAllResults() {
-    let requests: Array<Promise<CowinResponse[]>> = [];
-    request.forEach(val => {
-        for (let d = new Date(val.dateFrom); d <= new Date(val.dateTo); d.setDate(d.getDate() + 1)) {
-            val.type === 'P' ? requests.push(new CowinService().getResultByPincode(val.param, toDDMMYYYY(d))) : requests.push(new CowinService().getResultByDistrict(val.param, toDDMMYYYY(d)))
-        }
-    }
-    );
-
     Promise.all(requests).then(res => {
         let result: CowinResponse[] = _.flatten(res);
         processData(result);
     })
 }
+
+function preFetchRequests(){
+    console.log("Prefetching requests");
+    return new Promise((resolve,reject)=>{
+        request.forEach(val => {
+            for (let d = new Date(val.dateFrom); d <= new Date(val.dateTo); d.setDate(d.getDate() + 1)) {
+                val.type === 'P' ? requests.push(new CowinService().getResultByPincode(val.param, toDDMMYYYY(d))) : requests.push(new CowinService().getResultByDistrict(val.param, toDDMMYYYY(d)))
+            }
+        }
+        );
+        resolve(requests);
+    });
+   
+}
+
 function toDDMMYYYY(date: Date): string {
     return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
 }
@@ -70,5 +78,8 @@ function processData(data: CowinResponse[]) {
 let argv = require('minimist')(process.argv.slice(2));
 let interval = argv.t || 5;
 console.log(`Polling every ${interval} minutes`);
-getAllResults();
-setInterval(() => getAllResults(), interval * 60000);
+preFetchRequests().then(()=>{
+    getAllResults();
+    setInterval(() => getAllResults(), interval * 60000);
+});
+
